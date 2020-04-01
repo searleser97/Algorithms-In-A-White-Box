@@ -1,0 +1,10 @@
+{
+  "codeFolder" : "/home/san/Projects/Algorithms-In-A-White-Box/Book",
+  "templatePath" : "/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/Template.tex",
+  "outputFilePath" : "/home/san/Projects/Algorithms-In-A-White-Box/PDF/Book.tex",
+  "excluded" : [".vscode", "__pycache__"],
+  "columns" : 2,
+  "templatePlaceHolder" : "CODE HERE",
+  "sortBefore" : ["Coding Resources", "Data Structures"],
+  "sortAfter" : ["Extras", "Problems Solved"]
+}
