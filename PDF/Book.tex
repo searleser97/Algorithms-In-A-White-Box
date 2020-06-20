@@ -1,5 +1,6 @@
 % run the command ' lualatex -shell-escape Reference.tex ' twice in the terminal to visualize table of contents
 \documentclass[twoside]{article}
+% \documentclass{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
@@ -19,15 +20,16 @@
 \usepackage{afterpage}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{float}
 \usepackage[inline]{enumitem}
+\usepackage{fontspec}
 
-\geometry{letterpaper, portrait, left=0.5cm, right=0.5cm, top=1.8cm, bottom=1cm}
-
-\sectionfont{\Huge\bfseries\sffamily}
+\geometry{letterpaper, portrait, left=1cm, right=1cm, top=1.8cm, bottom=1cm}
 
 \setminted{
     style=tango,
-    breaklines=true
+		breaklines=true,
+		linenos=true
 }
 
 \setlength{\headsep}{0.5cm}
@@ -60,29 +62,44 @@
 \definecolor{yaleblue}{rgb}{0.06, 0.3, 0.57}
 \definecolor{skobeloff}{rgb}{0.0, 0.48, 0.45}
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
+\definecolor{lightgray}{gray}{0.9}
+
+\newcommand{\fileTitleStyle}{\centering\underline}
+
+\sectionfont{\centering\bfseries\Huge}
+\subsectionfont{\bfseries\LARGE}
+\subsubsectionfont{\bfseries\Large}
+\paragraphfont{\bfseries\large}
+
+\setmainfont{Montserrat}
 
 \begin{document}
 \includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
-\null
 \thispagestyle{empty}
+\cleardoublepage
+\tableofcontents
 \newpage
-\fontfamily{lmss}
-\selectfont
+\thispagestyle{empty}
+\cleardoublepage
 \begin{multicols*}{2}
-	\tableofcontents
-	\newpage
-	\cleardoublepage
-	\end{multicols*}
-\sectionfont{\bfseries\sffamily\centering\Huge}
+\end{multicols*}
+\newpage
+\sectionfont{\centering\bfseries\Huge}
 \vspace{1em}
 \section*{BITs Manipulation}
 \markboth{BITS MANIPULATION}{}
 \addcontentsline{toc}{section}{BITs Manipulation}
 \vspace{3em}
-\subsectionfont{\large\bfseries\sffamily\underline}
+\subsectionfont{\bfseries\LARGE}
+\subsectionfont{\fileTitleStyle}
 \subsection*{Least Significant Set Bit}
 \addcontentsline{toc}{subsection}{Least Significant Set Bit}
-First thing we need to notice is that when we add 1 to a number $N$, what we are doing is just converting the first (right to left) 0-bit into a 1-bit and the 1-bits before get converted to 0-bits because $1 + 1 = 0$ with carry of $1$ in binary, therefore we will be having a carry of 1-bit until we find a 0-bit.\\
+\vspace{1em}
+\sffamily
+\bgroup
+
+First thing we need to notice is that when we add 1 to a number $N$, what we are doing is just converting the first (right to left) 0-bit into a 1-bit and
+the 1-bits before get converted to 0-bits because $1 + 1 = 0$ with carry of $1$ in binary, therefore we will be having a carry of 1-bit until we find a 0-bit.\\
 
 \textbf{Example:}
 
@@ -100,40 +117,58 @@ So, to achieve our main objective which is to extract the least significant bit 
 And we can write this as the 2's complement since what we did was just to invert bits and add one, which is just the exact definition of 2's complement.\\
 
 \textbf{C++ Code:}\\
-
-\begin{minted}[bgcolor=LightGray]{cpp}
+\begin{minted}[bgcolor=lightgray]{cpp}
 int lsb(int n) {
   return n & -n;
 }
 \end{minted}
-\begin{multicols*}{2}
-\end{multicols*}
-\sectionfont{\bfseries\sffamily\centering\Huge}
+
+% \begin{figure}[thp]
+%   \centering
+%   \begin{minipage}[c]{0.2\textwidth}
+%     \begin{minted}[bgcolor=lightgray]{cpp}
+% int lsb(int n) {
+%   return n & -n;
+% }
+%       \end{minted}
+%   \end{minipage}
+% \end{figure}
+
+\egroup
 \vspace{1em}
-\section*{Ranges}
-\markboth{RANGES}{}
-\addcontentsline{toc}{section}{Ranges}
-\vspace{3em}
-\subsectionfont{\bfseries\sffamily\centering\LARGE}
-\vspace{0em}
-\subsection*{Data Structures}
-\addcontentsline{toc}{subsection}{Data Structures}
-\vspace{2em}
-\subsubsectionfont{\large\bfseries\sffamily\underline}
-\subsubsection*{BIT}
-\addcontentsline{toc}{subsubsection}{BIT}
-\subsection{What is a Binary Indexed Tree}
-
-Binary Indexed Tree (BIT) or Fenwick Tree is a data structure that can efficiently update
-elements and compute prefix sums in an array.\\
-
-It supports query and update in $O(lg(N))$ time with $O(N)$ space complexity and it requires just a few lines of code!
-
-\subsection{Idea}
-
-
-
 \begin{multicols*}{2}
-
 \end{multicols*}
+\newpage
+\sectionfont{\centering\bfseries\Huge}
+\vspace{1em}
+\section*{Graph Theory}
+\markboth{GRAPH THEORY}{}
+\addcontentsline{toc}{section}{Graph Theory}
+\vspace{3em}
+\subsectionfont{\bfseries\LARGE}
+\subsectionfont{\fileTitleStyle}
+\subsection*{Articulation Points And Bridges}
+\addcontentsline{toc}{subsection}{Articulation Points And Bridges}
+\vspace*{2em}
+Let's define what an \textit{articulation point} is. We say that a vertex $V$ in a graph $G$ with $C$
+connected components is an \textit{articulation point} if its removal increases the number of connected components of $G$.
+In other words, let $C'$ be the number of connected components after removing vertex $V$, if $C' > C$ then $V$ is an \textit{articulation point}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/1.png"}
+\end{figure}
+
+\subsubsection*{How to find articulation points?}
+\bullet Naive approach $O(V * (V + E))$
+
+\begin{minted}{ruby}
+for every vertex V in the graph G do
+    Remove V from G
+    if the number of connected components increases then V is an articulation point
+    Add V back to G
+\end{minted}
+\begin{multicols*}{2}
+\end{multicols*}
+
 \end{document}

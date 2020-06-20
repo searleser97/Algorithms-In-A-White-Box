@@ -1,5 +1,6 @@
 % run the command ' lualatex -shell-escape Reference.tex ' twice in the terminal to visualize table of contents
 \documentclass[twoside]{article}
+% \documentclass{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
@@ -19,15 +20,16 @@
 \usepackage{afterpage}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{float}
 \usepackage[inline]{enumitem}
+\usepackage{fontspec}
 
-\geometry{letterpaper, portrait, left=0.5cm, right=0.5cm, top=1.8cm, bottom=1cm}
-
-\sectionfont{\Huge\bfseries\sffamily}
+\geometry{letterpaper, portrait, left=1cm, right=1cm, top=1.8cm, bottom=1cm}
 
 \setminted{
     style=tango,
-    breaklines=true
+		breaklines=true,
+		linenos=true
 }
 
 \setlength{\headsep}{0.5cm}
@@ -60,18 +62,24 @@
 \definecolor{yaleblue}{rgb}{0.06, 0.3, 0.57}
 \definecolor{skobeloff}{rgb}{0.0, 0.48, 0.45}
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
+\definecolor{lightgray}{gray}{0.9}
+
+\newcommand{\fileTitleStyle}{\centering\underline}
+
+\sectionfont{\centering\bfseries\Huge}
+\subsectionfont{\bfseries\LARGE}
+\subsubsectionfont{\bfseries\Large}
+\paragraphfont{\bfseries\large}
+
+\setmainfont{Montserrat}
 
 \begin{document}
 \includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
-\null
 \thispagestyle{empty}
+\cleardoublepage
+\tableofcontents
 \newpage
-\fontfamily{lmss}
-\selectfont
-\begin{multicols*}{2}
-	\tableofcontents
-	\newpage
-	\cleardoublepage
-	CODE HERE
-\end{multicols*}
+\thispagestyle{empty}
+\cleardoublepage
+CODE HERE
 \end{document}

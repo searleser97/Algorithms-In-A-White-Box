@@ -1,10 +1,15 @@
 {
-  "codeFolder" : "/home/san/Projects/Algorithms-In-A-White-Box/Book",
-  "templatePath" : "/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/Template.tex",
-  "outputFilePath" : "/home/san/Projects/Algorithms-In-A-White-Box/PDF/Book.tex",
-  "excluded" : [".vscode", "__pycache__", "geogebra"],
-  "columns" : 2,
-  "templatePlaceHolder" : "CODE HERE",
-  "sortBefore" : ["Coding Resources", "Data Structures"],
-  "sortAfter" : ["Extras", "Problems Solved"]
+    "code_folder": "/home/san/Projects/Algorithms-In-A-White-Box/Book",
+    "template_path": "/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/Template.tex",
+    "output_file_path": "/home/san/Projects/Algorithms-In-A-White-Box/PDF/Book.tex",
+    "excluded": [
+        "__pycache__",
+        ".vscode",
+        "geogebra"
+    ],
+    "columns": 2,
+    "template_placeholder": "CODE HERE",
+    "sort_before": [],
+    "sort_after": [],
+    "enable_newpage_for_section": true
 }
