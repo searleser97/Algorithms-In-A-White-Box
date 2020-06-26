@@ -11,5 +11,6 @@
     "template_placeholder": "CODE HERE",
     "sort_before": [],
     "sort_after": [],
-    "enable_newpage_for_section": true
+    "enable_newpage_for_section": true,
+    "book_mode": true
 }

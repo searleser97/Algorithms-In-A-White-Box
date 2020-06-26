@@ -1,6 +1,6 @@
 % run the command ' lualatex -shell-escape Reference.tex ' twice in the terminal to visualize table of contents
-\documentclass[twoside]{article}
-% \documentclass{book}
+% \documentclass[twoside]{article}
+\documentclass[twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
@@ -12,7 +12,6 @@
 \usepackage{listings}
 \usepackage{pdfpages}
 \usepackage{needspace}
-\usepackage{sectsty}
 \usepackage{array}
 \usepackage{multirow}
 \usepackage{longtable}
@@ -23,30 +22,40 @@
 \usepackage{float}
 \usepackage[inline]{enumitem}
 \usepackage{fontspec}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{ulem}
+\usepackage[explicit]{titlesec}
 
-\geometry{letterpaper, portrait, left=1cm, right=1cm, top=1.8cm, bottom=1cm}
+
+\geometry{letterpaper, portrait, left=2cm, right=2cm, top=3cm, bottom=2cm}
 
 \setminted{
     style=tango,
-		breaklines=true,
-		linenos=true
+	breaklines=true,
+	linenos=true,
+	numbersep=2pt,
+	framesep=3mm,
+	tabsize=4
 }
 
-\setlength{\headsep}{0.5cm}
-\setlength{\columnsep}{0.5cm}
-\setlength{\columnseprule}{0.01cm}
-\renewcommand{\columnseprulecolor}{\color{gray}}
+\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}}
 
-\pagestyle{fancy}
-\pagenumbering{arabic}
-\fancyhead{}
-\fancyfoot{}
-\fancyhead[LO,RE]{\textsf{First, solve the problem. Then, write the code.}}
-\fancyhead[LE,RO]{\textsf{\leftmark}}
-\fancyfoot[LE,RO]{\textbf{\textsf{\thepage}}}
+% \setlength{\headsep}{0.5cm}
+% \setlength{\columnsep}{0.5cm}
+% \setlength{\columnseprule}{0.01cm}
+% \renewcommand{\columnseprulecolor}{\color{gray}}
 
-\renewcommand{\headrulewidth}{0.01cm}
-\renewcommand{\footrulewidth}{0.01cm}
+% \pagestyle{fancy}
+% % \pagenumbering{arabic}
+% \fancyhead{}
+% \fancyfoot{}
+% \fancyhead[LO,RE]{\textsf{First, solve the problem. Then, write the code.}}
+% \fancyhead[LE,RO]{\textsf{\leftmark}}
+% \fancyfoot[LE,RO]{\textbf{\textsf{\thepage}}}
+
+% \renewcommand{\headrulewidth}{0.01cm}
+% \renewcommand{\footrulewidth}{0.01cm}
 
 \setlength{\parindent}{0em}
 % column space
@@ -64,17 +73,20 @@
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
 
-\newcommand{\fileTitleStyle}{\centering\underline}
-
-\sectionfont{\centering\bfseries\Huge}
-\subsectionfont{\bfseries\LARGE}
-\subsubsectionfont{\bfseries\Large}
-\paragraphfont{\bfseries\large}
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}[\vspace{2em}]
+\titleformat{\chapter}{\huge\bfseries\centering}{\thechapter}{1em}{#1}
+\titleformat{\section}{\LARGE\bfseries\centering}{\thesection}{1em}{#1}
+\titleformat{\subsection}{\Large\bfseries\centering}{\thesubsection}{1em}{#1}
+\titleformat{\subsubsection}{\large\bfseries\centering}{\thesubsubsection}{1em}{#1}
+% \titleformat{\mkcprfile}{\normalsize\bfseries}{\themkcprfile}{1em}{\uline{#1}}
 
 \setmainfont{Montserrat}
 
+\setcounter{tocdepth}{5}
+
 \begin{document}
 \includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
+
 \thispagestyle{empty}
 \cleardoublepage
 \tableofcontents

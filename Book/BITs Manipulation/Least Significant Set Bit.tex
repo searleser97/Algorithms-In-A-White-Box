@@ -20,23 +20,19 @@ So, to achieve our main objective which is to extract the least significant bit 
 
 And we can write this as the 2's complement since what we did was just to invert bits and add one, which is just the exact definition of 2's complement.\\
 
-\textbf{C++ Code:}\\
-\begin{minted}[bgcolor=lightgray]{cpp}
+\subsection*{Code}
+\addcontentsline{toc}{subsection}{Code}
+
+\begin{figure}[thp]
+  \centering
+  \begin{minipage}[c]{0.9\textwidth}
+    \begin{minted}[bgcolor=lightgray]{cpp}
 int lsb(int n) {
   return n & -n;
 }
-\end{minted}
-
-% \begin{figure}[thp]
-%   \centering
-%   \begin{minipage}[c]{0.2\textwidth}
-%     \begin{minted}[bgcolor=lightgray]{cpp}
-% int lsb(int n) {
-%   return n & -n;
-% }
-%       \end{minted}
-%   \end{minipage}
-% \end{figure}
+      \end{minted}
+  \end{minipage}
+\end{figure}
 
 \egroup
 \vspace{1em}
