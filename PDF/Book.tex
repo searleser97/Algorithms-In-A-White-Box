@@ -1,5 +1,3 @@
-% run the command ' lualatex -shell-escape Reference.tex ' twice in the terminal to visualize table of contents
-% \documentclass[twoside]{article}
 \documentclass[twoside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -41,26 +39,11 @@
 
 \renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}}
 
-% \setlength{\headsep}{0.5cm}
-% \setlength{\columnsep}{0.5cm}
-% \setlength{\columnseprule}{0.01cm}
-% \renewcommand{\columnseprulecolor}{\color{gray}}
 
-% \pagestyle{fancy}
-% % \pagenumbering{arabic}
-% \fancyhead{}
-% \fancyfoot{}
-% \fancyhead[LO,RE]{\textsf{First, solve the problem. Then, write the code.}}
-% \fancyhead[LE,RO]{\textsf{\leftmark}}
-% \fancyfoot[LE,RO]{\textbf{\textsf{\thepage}}}
 
-% \renewcommand{\headrulewidth}{0.01cm}
-% \renewcommand{\footrulewidth}{0.01cm}
 
 \setlength{\parindent}{0em}
-% column space
 \setlength{\tabcolsep}{10pt} % Default value: 6pt
-% upper and lower padding
 \renewcommand{\arraystretch}{1.5} % Default value: 1
 
 \definecolor{prussianblue}{rgb}{0.0, 0.19, 0.33}
@@ -73,12 +56,11 @@
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
 
-\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}[\vspace{2em}]
-\titleformat{\chapter}{\huge\bfseries\centering}{\thechapter}{1em}{#1}
-\titleformat{\section}{\LARGE\bfseries\centering}{\thesection}{1em}{#1}
-\titleformat{\subsection}{\Large\bfseries\centering}{\thesubsection}{1em}{#1}
-\titleformat{\subsubsection}{\large\bfseries\centering}{\thesubsubsection}{1em}{#1}
-% \titleformat{\mkcprfile}{\normalsize\bfseries}{\themkcprfile}{1em}{\uline{#1}}
+\titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{#1}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{#1}
+\titleformat{\mkcprfile}{\bfseries\centering}{\themkcprfile}{1em}{\uline{#1}}
 
 \setmainfont{Montserrat}
 
@@ -95,14 +77,11 @@
 \cleardoublepage
 \begin{multicols*}{2}
 \end{multicols*}
-{
-\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}[\vspace{2em}]
 \part*{BITs Manipulation}
 \markboth{BITS MANIPULATION}{}
 \addcontentsline{toc}{part}{BITs Manipulation}
-}
 {
-\titleformat{\chapter}{\huge\bfseries\centering}{\thechapter}{1em}{#1}
+\titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
 \chapter*{Least Significant Set Bit}
 \addcontentsline{toc}{chapter}{Least Significant Set Bit}
 }
@@ -146,14 +125,11 @@ int lsb(int n) {
 \vspace{1em}
 \begin{multicols*}{2}
 \end{multicols*}
-{
-\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}[\vspace{2em}]
 \part*{Graph Theory}
 \markboth{GRAPH THEORY}{}
 \addcontentsline{toc}{part}{Graph Theory}
-}
 {
-\titleformat{\chapter}{\huge\bfseries\centering}{\thechapter}{1em}{#1}
+\titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
 \chapter*{Articulation Points And Bridges}
 \addcontentsline{toc}{chapter}{Articulation Points And Bridges}
 }
