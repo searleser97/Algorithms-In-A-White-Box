@@ -1,0 +1,199 @@
+\documentclass[twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{geometry}
+\usepackage{multicol}
+\usepackage{minted}
+\usepackage{python}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{needspace}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{afterpage}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage[inline]{enumitem}
+\usepackage{fontspec}
+\usepackage{caption}
+\usepackage{placeins}
+\usepackage{ulem}
+\usepackage[explicit]{titlesec}
+
+
+\geometry{letterpaper, portrait, left=2cm, right=2cm, top=3cm, bottom=2cm}
+
+\setminted{
+    style=tango,
+	breaklines=true,
+	linenos=true,
+	numbersep=2pt,
+	framesep=3mm,
+	tabsize=4
+}
+
+\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}}
+
+
+
+
+\setlength{\parindent}{0em}
+\setlength{\tabcolsep}{10pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+
+\definecolor{prussianblue}{rgb}{0.0, 0.19, 0.33}
+\definecolor{indigo(dye)}{rgb}{0.0, 0.25, 0.42}
+\definecolor{lapislazuli}{rgb}{0.15, 0.38, 0.61}
+\definecolor{mediumelectricblue}{rgb}{0.01, 0.31, 0.59}
+\definecolor{smalt(darkpowderblue)}{rgb}{0.0, 0.2, 0.6}
+\definecolor{yaleblue}{rgb}{0.06, 0.3, 0.57}
+\definecolor{skobeloff}{rgb}{0.0, 0.48, 0.45}
+\definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
+\definecolor{lightgray}{gray}{0.9}
+
+\titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
+\titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
+\titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{#1}
+\titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{#1}
+\titleformat{\mkcprfile}{\bfseries\centering}{\themkcprfile}{1em}{\uline{#1}}
+
+\setmainfont{Montserrat}
+
+\setcounter{tocdepth}{5}
+
+\begin{document}
+\includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
+
+\thispagestyle{empty}
+\cleardoublepage
+\tableofcontents
+\newpage
+\thispagestyle{empty}
+\cleardoublepage
+\begin{multicols*}{2}
+\end{multicols*}
+\part*{BITs Manipulation}
+\markboth{BITS MANIPULATION}{}
+\addcontentsline{toc}{part}{BITs Manipulation}
+{
+\titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
+\chapter*{Least Significant Set Bit}
+\addcontentsline{toc}{chapter}{Least Significant Set Bit}
+}
+\vspace{1em}
+\sffamily
+\bgroup
+
+First thing we need to notice is that when we add 1 to a number $N$, what we are doing is just converting the first (right to left) 0-bit into a 1-bit and
+the 1-bits before get converted to 0-bits because $1 + 1 = 0$ with carry of $1$ in binary, therefore we will be having a carry of 1-bit until we find a 0-bit.\\
+
+\textbf{Example:}
+
+$$00100111 + 1 = 00101000$$
+
+Second thing we need to notice is very simple, lets start by denoting $\overline{N}$ as $N$ with all it's bits inverted (1-bits change to 0-bit and viceversa), if we perform an $AND$ operation between $N$ and $\overline{N}$ we will get all bits in $0$ as result.\\
+
+\textbf{Example:}
+
+$$N = 00100111$$
+$$\overline{N} = 11011000$$
+
+So, to achieve our main objective which is to extract the least significant bit (rightmost bit) we can just invert $N$ and add 1 to it that will convert the first 0-bit to 1-bit so if we make an $AND$ operation with $N$ and $\overline{N}$ we get everything before the lsb as 0-bit and after the lsb we also get everything as 0-bit.\\
+
+And we can write this as the 2's complement since what we did was just to invert bits and add one, which is just the exact definition of 2's complement.\\
+
+\subsection*{Code}
+\addcontentsline{toc}{subsection}{Code}
+
+\begin{figure}[thp]
+  \centering
+  \begin{minipage}[c]{0.9\textwidth}
+    \begin{minted}[bgcolor=lightgray]{cpp}
+int lsb(int n) {
+  return n & -n;
+}
+      \end{minted}
+  \end{minipage}
+\end{figure}
+
+\egroup
+\vspace{1em}
+\begin{multicols*}{2}
+\end{multicols*}
+\part*{Graph Theory}
+\markboth{GRAPH THEORY}{}
+\addcontentsline{toc}{part}{Graph Theory}
+{
+\titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
+\chapter*{Articulation Points And Bridges}
+\addcontentsline{toc}{chapter}{Articulation Points And Bridges}
+}
+\vspace*{2em}
+\subsection*{Definition}
+\addcontentsline{toc}{subsection}{Definition}
+We say that a vertex $V$ in a graph $G$ with $C$
+connected components is an \textit{articulation point} if its removal increases the number of connected components of $G$.
+In other words, let $C'$ be the number of connected components after removing vertex $V$, if $C' > C$ then $V$ is an \textit{articulation point}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.35\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g1.pdf"}
+  \caption{}
+  \label{fig:apb_g1}
+\end{figure}
+
+\subsection*{Naive Approach}
+\addcontentsline{toc}{subsection}{Naive Approach}
+
+\begin{figure}[thp]
+  \centering
+  \begin{minipage}[c]{0.9\textwidth}
+    \begin{minted}[bgcolor=lightgray]{ruby}
+for every vertex V in the graph G do
+    Remove V from G
+    if the number of connected components increases then
+        V is an articulation point
+    Add V back to G
+      \end{minted}
+  \end{minipage}
+\end{figure}
+
+The complexity of counting the number of \textit{connected components} is $O(V + E)$ therefore,
+the total complexity of this naive approach is $O(V * (V + E))$.
+
+\subsection*{Tarjan's Approach}
+\addcontentsline{toc}{subsection}{Tarjan's Approach}
+
+First, we need to know that an \textit{ancestor} of some node $V$ is a node $A$ that was discoverd
+before $V$ in a DFS traversal. i.e. In the graph of figure \ref{fig:apb_g1} shown above, if we start
+our DFS from $A$ and follow the path to $C$ through $B$ ($A \rightarrow B \rightarrow C$), then $A$
+is an ancestor of $B$ and $C$ in this spanning tree generated from the DFS traversal.\\
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g2.pdf"}
+  \caption{Example of DFS spanning trees of a graph}
+  \label{fig:apb_g2}
+\end{figure}
+
+
+Now that we know the definition of \textit{ancestor} let's dive into the main idea.
+
+
+\subsubsection*{Idea}
+\addcontentsline{toc}{subsubsection}{Idea}
+
+Let's say there is a node $V$ in some graph $G$ that can be reached by a node $U$ through some
+intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if $V$ can also be
+reached by $A$ = ''ancestor of $U$'' without passing through $U$ then, $U$ is NOT an articulation point
+because it means that if we remove $U$ from $G$ we can still reach $V$ from $A$, hence, the number of
+\textit{connected components} will remain the same.
+\begin{multicols*}{2}
+\end{multicols*}
+
+\end{document}
