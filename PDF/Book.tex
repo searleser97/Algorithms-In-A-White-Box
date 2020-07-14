@@ -1,11 +1,10 @@
-\documentclass[twoside]{book}
+\documentclass[twoside, openany]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
 \usepackage{multicol}
 \usepackage{minted}
 \usepackage{python}
-\usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{listings}
 \usepackage{pdfpages}
@@ -24,6 +23,7 @@
 \usepackage{placeins}
 \usepackage{ulem}
 \usepackage[explicit]{titlesec}
+\usepackage[hidelinks]{hyperref}
 
 
 \geometry{letterpaper, portrait, left=2cm, right=2cm, top=3cm, bottom=2cm}
@@ -37,14 +37,20 @@
 	tabsize=4
 }
 
-\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}}
+\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}} % style for minted numbers
 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[RO, LE]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE,RO]{\leftmark}
 
-
-
-\setlength{\parindent}{0em}
-\setlength{\tabcolsep}{10pt} % Default value: 6pt
-\renewcommand{\arraystretch}{1.5} % Default value: 1
+\fancypagestyle{plain}{ % page style for part and chapter
+	\fancyhf{} 
+	\fancyfoot[RO, LE]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhead[LE,RO]{\leftmark}
+}
 
 \definecolor{prussianblue}{rgb}{0.0, 0.19, 0.33}
 \definecolor{indigo(dye)}{rgb}{0.0, 0.25, 0.42}
@@ -55,6 +61,13 @@
 \definecolor{skobeloff}{rgb}{0.0, 0.48, 0.45}
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
+
+\titleclass{\part}{straight}
+\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\titlespacing*{\part}{0pt}{50pt}{40pt}
+\titleclass{\chapter}{straight}
+\titleformat{\chapter}[display]{\huge\bfseries}{\thechapter}{1em}{#1}
+\titlespacing*{\chapter} {0pt}{50pt}{40pt}
 
 \titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
 \titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
@@ -68,25 +81,42 @@
 
 \begin{document}
 \includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
-
 \thispagestyle{empty}
-\cleardoublepage
+\newpage
 \tableofcontents
 \newpage
-\thispagestyle{empty}
-\cleardoublepage
 \begin{multicols*}{2}
 \end{multicols*}
-\part*{BITs Manipulation}
-\markboth{BITS MANIPULATION}{}
-\addcontentsline{toc}{part}{BITs Manipulation}
+{
+\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\phantomsection
+\part*{Number Theory}
+\markboth{NUMBER THEORY}{}
+}
 {
 \titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
+\phantomsection
+\chapter*{Greatest Common Divisor}
+\addcontentsline{toc}{chapter}{Greatest Common Divisor}
+}
+To compute the \textit{GCD} we use one of the most important Euclidean Theorems.
+
+
+\begin{multicols*}{2}
+\end{multicols*}
+{
+\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\phantomsection
+\part*{BITs Manipulation}
+\markboth{BITS MANIPULATION}{}
+}
+{
+\titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
+\phantomsection
 \chapter*{Least Significant Set Bit}
 \addcontentsline{toc}{chapter}{Least Significant Set Bit}
 }
 \vspace{1em}
-\sffamily
 \bgroup
 
 First thing we need to notice is that when we add 1 to a number $N$, what we are doing is just converting the first (right to left) 0-bit into a 1-bit and
@@ -107,8 +137,9 @@ So, to achieve our main objective which is to extract the least significant bit 
 
 And we can write this as the 2's complement since what we did was just to invert bits and add one, which is just the exact definition of 2's complement.\\
 
-\subsection*{Code}
-\addcontentsline{toc}{subsection}{Code}
+\phantomsection
+\section*{Code}
+\addcontentsline{toc}{section}{Code}
 
 \begin{figure}[thp]
   \centering
@@ -125,17 +156,22 @@ int lsb(int n) {
 \vspace{1em}
 \begin{multicols*}{2}
 \end{multicols*}
+{
+\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\phantomsection
 \part*{Graph Theory}
 \markboth{GRAPH THEORY}{}
-\addcontentsline{toc}{part}{Graph Theory}
+}
 {
 \titleformat{\chapter}{\bfseries\centering\huge}{\thechapter}{1em}{\uline{#1}}
+\phantomsection
 \chapter*{Articulation Points And Bridges}
 \addcontentsline{toc}{chapter}{Articulation Points And Bridges}
 }
 \vspace*{2em}
-\subsection*{Definition}
-\addcontentsline{toc}{subsection}{Definition}
+\phantomsection
+\section*{Definition}
+\addcontentsline{toc}{section}{Definition}
 We say that a vertex $V$ in a graph $G$ with $C$
 connected components is an \textit{articulation point} if its removal increases the number of connected components of $G$.
 In other words, let $C'$ be the number of connected components after removing vertex $V$, if $C' > C$ then $V$ is an \textit{articulation point}.
@@ -147,8 +183,9 @@ In other words, let $C'$ be the number of connected components after removing ve
   \label{fig:apb_g1}
 \end{figure}
 
-\subsection*{Naive Approach}
-\addcontentsline{toc}{subsection}{Naive Approach}
+\phantomsection
+\section*{Naive Approach}
+\addcontentsline{toc}{section}{Naive Approach}
 
 \begin{figure}[thp]
   \centering
@@ -166,8 +203,9 @@ for every vertex V in the graph G do
 The complexity of counting the number of \textit{connected components} is $O(V + E)$ therefore,
 the total complexity of this naive approach is $O(V * (V + E))$.
 
-\subsection*{Tarjan's Approach}
-\addcontentsline{toc}{subsection}{Tarjan's Approach}
+\phantomsection
+\section*{Tarjan's Approach}
+\addcontentsline{toc}{section}{Tarjan's Approach}
 
 First, we need to know that an \textit{ancestor} of some node $V$ is a node $A$ that was discoverd
 before $V$ in a DFS traversal. i.e. In the graph of figure \ref{fig:apb_g1} shown above, if we start
@@ -184,9 +222,9 @@ is an ancestor of $B$ and $C$ in this spanning tree generated from the DFS trave
 
 Now that we know the definition of \textit{ancestor} let's dive into the main idea.
 
-
-\subsubsection*{Idea}
-\addcontentsline{toc}{subsubsection}{Idea}
+\phantomsection
+\subsection*{Idea}
+\addcontentsline{toc}{subsection}{Idea}
 
 Let's say there is a node $V$ in some graph $G$ that can be reached by a node $U$ through some
 intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if $V$ can also be

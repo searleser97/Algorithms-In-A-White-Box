@@ -1,6 +1,7 @@
 \vspace*{2em}
-\subsection*{Definition}
-\addcontentsline{toc}{subsection}{Definition}
+\phantomsection
+\section*{Definition}
+\addcontentsline{toc}{section}{Definition}
 We say that a vertex $V$ in a graph $G$ with $C$
 connected components is an \textit{articulation point} if its removal increases the number of connected components of $G$.
 In other words, let $C'$ be the number of connected components after removing vertex $V$, if $C' > C$ then $V$ is an \textit{articulation point}.
@@ -12,8 +13,9 @@ In other words, let $C'$ be the number of connected components after removing ve
   \label{fig:apb_g1}
 \end{figure}
 
-\subsection*{Naive Approach}
-\addcontentsline{toc}{subsection}{Naive Approach}
+\phantomsection
+\section*{Naive Approach}
+\addcontentsline{toc}{section}{Naive Approach}
 
 \begin{figure}[thp]
   \centering
@@ -31,8 +33,9 @@ for every vertex V in the graph G do
 The complexity of counting the number of \textit{connected components} is $O(V + E)$ therefore,
 the total complexity of this naive approach is $O(V * (V + E))$.
 
-\subsection*{Tarjan's Approach}
-\addcontentsline{toc}{subsection}{Tarjan's Approach}
+\phantomsection
+\section*{Tarjan's Approach}
+\addcontentsline{toc}{section}{Tarjan's Approach}
 
 First, we need to know that an \textit{ancestor} of some node $V$ is a node $A$ that was discoverd
 before $V$ in a DFS traversal. i.e. In the graph of figure \ref{fig:apb_g1} shown above, if we start
@@ -49,9 +52,9 @@ is an ancestor of $B$ and $C$ in this spanning tree generated from the DFS trave
 
 Now that we know the definition of \textit{ancestor} let's dive into the main idea.
 
-
-\subsubsection*{Idea}
-\addcontentsline{toc}{subsubsection}{Idea}
+\phantomsection
+\subsection*{Idea}
+\addcontentsline{toc}{subsection}{Idea}
 
 Let's say there is a node $V$ in some graph $G$ that can be reached by a node $U$ through some
 intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if $V$ can also be

@@ -1,13 +1,11 @@
 % run the command ' lualatex -shell-escape Reference.tex ' twice in the terminal to visualize table of contents
-% \documentclass[twoside]{article}
-\documentclass[twoside]{book}
+\documentclass[twoside, openany]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{geometry}
 \usepackage{multicol}
 \usepackage{minted}
 \usepackage{python}
-\usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
 \usepackage{listings}
 \usepackage{pdfpages}
@@ -26,6 +24,7 @@
 \usepackage{placeins}
 \usepackage{ulem}
 \usepackage[explicit]{titlesec}
+\usepackage[hidelinks]{hyperref}
 
 
 \geometry{letterpaper, portrait, left=2cm, right=2cm, top=3cm, bottom=2cm}
@@ -39,29 +38,20 @@
 	tabsize=4
 }
 
-\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}}
+\renewcommand{\theFancyVerbLine}{{\small \arabic{FancyVerbLine}}} % style for minted numbers
 
-% \setlength{\headsep}{0.5cm}
-% \setlength{\columnsep}{0.5cm}
-% \setlength{\columnseprule}{0.01cm}
-% \renewcommand{\columnseprulecolor}{\color{gray}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[RO, LE]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[LE,RO]{\leftmark}
 
-% \pagestyle{fancy}
-% % \pagenumbering{arabic}
-% \fancyhead{}
-% \fancyfoot{}
-% \fancyhead[LO,RE]{\textsf{First, solve the problem. Then, write the code.}}
-% \fancyhead[LE,RO]{\textsf{\leftmark}}
-% \fancyfoot[LE,RO]{\textbf{\textsf{\thepage}}}
-
-% \renewcommand{\headrulewidth}{0.01cm}
-% \renewcommand{\footrulewidth}{0.01cm}
-
-\setlength{\parindent}{0em}
-% column space
-\setlength{\tabcolsep}{10pt} % Default value: 6pt
-% upper and lower padding
-\renewcommand{\arraystretch}{1.5} % Default value: 1
+\fancypagestyle{plain}{ % page style for part and chapter
+	\fancyhf{} 
+	\fancyfoot[RO, LE]{\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+	\fancyhead[LE,RO]{\leftmark}
+}
 
 \definecolor{prussianblue}{rgb}{0.0, 0.19, 0.33}
 \definecolor{indigo(dye)}{rgb}{0.0, 0.25, 0.42}
@@ -73,7 +63,13 @@
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
 
-\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
+\titleclass{\part}{straight}
+\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\titlespacing*{\part}{0pt}{50pt}{40pt}
+\titleclass{\chapter}{straight}
+\titleformat{\chapter}[display]{\huge\bfseries}{\thechapter}{1em}{#1}
+\titlespacing*{\chapter} {0pt}{50pt}{40pt}
+
 \titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
 \titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
 \titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{#1}
@@ -86,12 +82,9 @@
 
 \begin{document}
 \includepdf{"/home/san/Projects/Algorithms-In-A-White-Box/LaTex Template/TitlePage/TitlePage.pdf"}
-
 \thispagestyle{empty}
-\cleardoublepage
+\newpage
 \tableofcontents
 \newpage
-\thispagestyle{empty}
-\cleardoublepage
 CODE HERE
 \end{document}
