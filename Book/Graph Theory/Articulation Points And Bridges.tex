@@ -60,4 +60,31 @@ Let's say there is a node $V$ in some graph $G$ that can be reached by a node $U
 intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if $V$ can also be
 reached by $A$ = ''ancestor of $U$'' without passing through $U$ then, $U$ is NOT an articulation point
 because it means that if we remove $U$ from $G$ we can still reach $V$ from $A$, hence, the number of
-\textit{connected components} will remain the same.
+\textit{connected components} will remain the same. Hence, we can conclude that the only 2 conditions for
+$U$ to be an \textit{articulation point} are:
+
+\begin{enumerate}
+  \item If all paths from $A$ to $V$ require $U$ to be in the graph.
+  \item If $U$ is the root of the DFS traversal with at least 2 children subgraphs disconnected from each other.
+\end{enumerate}
+
+\noindent
+Then we can break condition \#1 into 2 subconditions:
+
+\begin{itemize}
+  \item[\bullet] $U$ is an \textit{articulation point} if all paths from an ancestor of $U$ to $V$
+        require $U$ to be in the graph.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g9.pdf"}
+          \caption{}
+          \label{fig:apb_g3}
+        \end{figure}
+  \item[\bullet] $U$ is an \textit{articulation point} if it is the root of some cycle in the DFS traversal.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g8.pdf"}
+          \caption{}
+          \label{fig:apb_g3}
+        \end{figure}
+\end{itemize}

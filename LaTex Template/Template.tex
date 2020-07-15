@@ -63,13 +63,10 @@
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
 
-\titleclass{\part}{straight}
-\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
-\titlespacing*{\part}{0pt}{50pt}{40pt}
-\titleclass{\chapter}{straight}
-\titleformat{\chapter}[display]{\huge\bfseries}{\thechapter}{1em}{#1}
-\titlespacing*{\chapter} {0pt}{50pt}{40pt}
+\titleclass{\part}{page}
 
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
+\titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
 \titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
 \titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{#1}
 \titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{#1}

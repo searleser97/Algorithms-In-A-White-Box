@@ -62,13 +62,10 @@
 \definecolor{pinegreen}{rgb}{0.0, 0.47, 0.44}
 \definecolor{lightgray}{gray}{0.9}
 
-\titleclass{\part}{straight}
-\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
-\titlespacing*{\part}{0pt}{50pt}{40pt}
-\titleclass{\chapter}{straight}
-\titleformat{\chapter}[display]{\huge\bfseries}{\thechapter}{1em}{#1}
-\titlespacing*{\chapter} {0pt}{50pt}{40pt}
+\titleclass{\part}{page}
 
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
+\titleformat{\chapter}{\huge\bfseries}{\thechapter}{1em}{#1}
 \titleformat{\section}{\LARGE\bfseries}{\thesection}{1em}{#1}
 \titleformat{\subsection}{\Large\bfseries}{\thesubsection}{1em}{#1}
 \titleformat{\subsubsection}{\large\bfseries}{\thesubsubsection}{1em}{#1}
@@ -87,7 +84,7 @@
 \begin{multicols*}{2}
 \end{multicols*}
 {
-\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
 \phantomsection
 \part*{Number Theory}
 \markboth{NUMBER THEORY}{}
@@ -104,7 +101,7 @@ To compute the \textit{GCD} we use one of the most important Euclidean Theorems.
 \begin{multicols*}{2}
 \end{multicols*}
 {
-\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
 \phantomsection
 \part*{BITs Manipulation}
 \markboth{BITS MANIPULATION}{}
@@ -156,7 +153,7 @@ int lsb(int n) {
 \begin{multicols*}{2}
 \end{multicols*}
 {
-\titleformat{\part}[display]{\Huge\bfseries}{\thepart}{1em}{#1}
+\titleformat{\part}{\Huge\bfseries\centering}{\thepart}{1em}{#1}
 \phantomsection
 \part*{Graph Theory}
 \markboth{GRAPH THEORY}{}
@@ -229,7 +226,34 @@ Let's say there is a node $V$ in some graph $G$ that can be reached by a node $U
 intermediate nodes (maybe non intermediate nodes) following some DFS traversal, if $V$ can also be
 reached by $A$ = ''ancestor of $U$'' without passing through $U$ then, $U$ is NOT an articulation point
 because it means that if we remove $U$ from $G$ we can still reach $V$ from $A$, hence, the number of
-\textit{connected components} will remain the same.
+\textit{connected components} will remain the same. Hence, we can conclude that the only 2 conditions for
+$U$ to be an \textit{articulation point} are:
+
+\begin{enumerate}
+  \item If all paths from $A$ to $V$ require $U$ to be in the graph.
+  \item If $U$ is the root of the DFS traversal with at least 2 children subgraphs disconnected from each other.
+\end{enumerate}
+
+\noindent
+Then we can break condition \#1 into 2 subconditions:
+
+\begin{itemize}
+  \item[\bullet] $U$ is an \textit{articulation point} if all paths from every ancestor of $U$ to $V$
+        require $U$ to be in the graph.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g9.pdf"}
+          \caption{}
+          \label{fig:apb_g3}
+        \end{figure}
+  \item[\bullet] $U$ is an \textit{articulation point} if it is the root of some cycle in the DFS traversal.
+        \begin{figure}[H]
+          \centering
+          \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g8.pdf"}
+          \caption{}
+          \label{fig:apb_g3}
+        \end{figure}
+\end{itemize}
 \begin{multicols*}{2}
 \end{multicols*}
 
