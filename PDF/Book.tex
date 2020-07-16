@@ -215,7 +215,7 @@ is an ancestor of $B$ and $C$ in this spanning tree generated from the DFS trave
   \label{fig:apb_g2}
 \end{figure}
 
-
+\noindent
 Now that we know the definition of \textit{ancestor} let's dive into the main idea.
 
 \phantomsection
@@ -227,7 +227,7 @@ intermediate nodes (maybe non intermediate nodes) following some DFS traversal, 
 reached by $A$ = ''ancestor of $U$'' without passing through $U$ then, $U$ is NOT an articulation point
 because it means that if we remove $U$ from $G$ we can still reach $V$ from $A$, hence, the number of
 \textit{connected components} will remain the same. Hence, we can conclude that the only 2 conditions for
-$U$ to be an \textit{articulation point} are:
+$U$ to be an \textit{articulation point} are:\\
 
 \begin{enumerate}
   \item If all paths from $A$ to $V$ require $U$ to be in the graph.
@@ -238,22 +238,70 @@ $U$ to be an \textit{articulation point} are:
 Then we can break condition \#1 into 2 subconditions:
 
 \begin{itemize}
-  \item[\bullet] $U$ is an \textit{articulation point} if all paths from every ancestor of $U$ to $V$
-        require $U$ to be in the graph.
+  \item[\bullet] $U$ is an \textit{articulation point} if it does not have an adyacent node $V$ that can reach $A$ without
+        requiring $U$ to be in $G$.
         \begin{figure}[H]
           \centering
           \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g9.pdf"}
           \caption{}
-          \label{fig:apb_g3}
+          \label{fig:apb_g9}
         \end{figure}
-  \item[\bullet] $U$ is an \textit{articulation point} if it is the root of some cycle in the DFS traversal.
+        \newpage
+  \item[\bullet] $U$ is an \textit{articulation point} if it is the root of an \textit{outer} cycle in the DFS traversal.
         \begin{figure}[H]
           \centering
           \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g8.pdf"}
           \caption{}
-          \label{fig:apb_g3}
+          \label{fig:apb_g8}
         \end{figure}
 \end{itemize}
+
+\phantomsection
+\subsection*{Examples}
+\addcontentsline{toc}{subsection}{Examples}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g5.pdf"}
+  \caption{$B$ is an \textit{articulation point} because every path connecting any ancestor of $B$ with $C$
+    requires $B$ to be in the graph.}
+  \label{fig:apb_g5}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g4.pdf"}
+  \caption{$B$ is NOT an \textit{articulation point} because there is at least one path from an ancestor of $B$ to $C$
+    which does not require $B$.}
+  \label{fig:apb_g4}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{"Images/Graph Theory/Articulation Points And Bridges/g6.pdf"}
+  \caption{$B$ is an \textit{articulation point} since it has at least 2 children subgraphs disconnected from each other}
+  \label{fig:apb_g6}
+\end{figure}
+
+\phantomsection
+\subsection*{Implementation}
+\addcontentsline{toc}{subsection}{Implementation}
+
+The first thing we need, is a way to know if some node $A$ is an ancestor of some other node $V$, for this
+we can assign a \textit{discovery time} to each vertext $V$ in the graph $G$ based on the DFS traversal,
+so that we can know which node was discovered before or after another, e.g. in the graph of figure \ref{fig:apb_g1} with the traversal
+$A \rightarrow B \rightarrow C$, the discovery times for each node will be 1, 2, 3 respectively; with this we know that
+$A$ was discovered before $C$ since the \textit{discovery time} of $A$ is smaller than the \textit{discovery time} of $C$.\\
+
+\noindent
+Now we need to know if some vertex $U$ is an \textit{articulation point}. For that we will check the following conditions.
+
+\begin{enumerate}
+  \item If after visiting $U$ following the DFS traversal there is NO way to get to a node $V$ with strictly smaller discovery time
+        than the discovery time of $U$, then $U$ is an \textit{articulation point}.
+  \item If $U$ is the root of the DFS tree and it has at least 2 children subgraphs disconnected from each other, then $U$ is an
+        \textit{articulation point}.
+\end{enumerate}
 \begin{multicols*}{2}
 \end{multicols*}
 
